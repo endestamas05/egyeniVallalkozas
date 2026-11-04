@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <!-- Utolsó ellenőrzés: 2026-11-04; alap: Eht. (2003. évi C. törvény) 155. § (4), 2002/58/EK irányelv 5. cikk (3), GDPR -->
+  <meta charset="utf-8">
+  <!-- GitHub Pages: nincs .htaccess, ezért a CSP és a referrer szabály meta címkében, a scriptek előtt.
+       A frame-ancestors meta címkében nem működik, a keretbe töltés ellen a js/head.js véd. -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Süti tájékoztató – Endes Tamás webfejlesztő</title>
+  <meta name="description" content="Endes Tamás webfejlesztő oldala nem használ sütit és nem tárol adatot a böngészőben.">
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/head.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#tartalom">Ugrás a tartalomra</a>
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a class="logo" href="index.html" aria-label="Endes Tamás – kezdőlap">&lt;et<span>/</span>&gt;</a>
+      <a class="legal__back" href="index.html">← vissza a főoldalra</a>
+    </div>
+  </header>
+
+  <main id="tartalom" class="legal">
+    <div class="container legal__inner">
+      <h1>Süti tájékoztató</h1>
+      <p>Hatályos: <span class="todo">KITÖLTENDŐ: a közzététel napja</span></p>
+
+      <h2>Ez az oldal nem használ sütit</h2>
+      <p>A weboldal nem helyez el sütit (cookie) a böngésződben, és nem használ más, a készülékeden adatot tároló vagy onnan adatot kiolvasó technikát sem (pl. <code>localStorage</code>, <code>sessionStorage</code>, követőpixel, eszközazonosító). Ezért nincs süti-felugró ablak (banner), és nem kérek hozzá hozzájárulást.</p>
+
+      <div class="table-wrap">
+        <table>
+          <caption class="sr-only">Az oldalon használt sütik és tárolt adatok</caption>
+          <thead>
+            <tr><th scope="col">Név</th><th scope="col">Szolgáltató</th><th scope="col">Cél</th><th scope="col">Élettartam</th><th scope="col">Típus</th><th scope="col">Jogalap</th></tr>
+          </thead>
+          <tbody>
+            <tr><td colspan="6">Nincs ilyen süti vagy tárolt adat.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>Ami nem süti, de jó, ha tudod</h2>
+      <ul>
+        <li><strong>Sötét és világos mód:</strong> az oldal a készüléked beállítását követi (<code>prefers-color-scheme</code>). Ehhez semmit nem tárolok, a böngésző maga közli a beállítást.</li>
+        <li><strong>„Másolás” gomb:</strong> az e-mail címet a vágólapodra teszi, csak akkor, ha rákattintasz. Semmit nem tárol és nem küld el.</li>
+        <li><strong>Szervernapló:</strong> a tárhelyszolgáltató (GitHub Pages) naplózza a látogatások technikai adatait (pl. IP-cím). Ez nem a készülékeden tárolódik, részletek az <a href="adatvedelem.html">adatvédelmi tájékoztatóban</a>.</li>
+      </ul>
+
+      <h2>Mikor változik ez?</h2>
+      <p>Ha később olyan funkció kerül az oldalra, ami sütit vagy más tárolást használ (pl. látogatottságmérés, beágyazott térkép vagy foglalórendszer), ezt az oldalt előtte frissítem. Ahol a jogszabály hozzájárulást ír elő (2002/58/EK irányelv 5. cikk (3), Eht. 155. § (4)), ott a tárolás csak a hozzájárulásod után indul el.</p>
+
+      <p><a href="impresszum.html">Impresszum</a> · <a href="adatvedelem.html">Adatvédelmi tájékoztató</a></p>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container site-footer__inner">
+      <p>© 2026 Endes Tamás egyéni vállalkozó</p>
+      <ul>
+        <li><a href="impresszum.html">Impresszum</a></li>
+        <li><a href="adatvedelem.html">Adatvédelmi tájékoztató</a></li>
+        <li><a href="sutik.html" aria-current="page">Süti tájékoztató</a></li>
+      </ul>
+    </div>
+  </footer>
+</body>
+</html>

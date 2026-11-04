@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# TODO: a végleges domain
+Sitemap: https://TODO-domain.hu/sitemap.xml

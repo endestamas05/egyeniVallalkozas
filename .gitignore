@@ -1,0 +1,11 @@
+# Munkafájlok – nem nyilvánosak (nyitott jogi kérdések, belső jegyzetek)
+CLAUDE.md
+adatkezeles-nyilvantartas.md
+
+# Forrásanyagok, ideiglenes fájlok
+/forras/
+*.mp4
+*.mov
+node_modules/
+.DS_Store
+Thumbs.db

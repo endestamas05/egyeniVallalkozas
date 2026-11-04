@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="utf-8">
+  <!-- GitHub Pages: nincs .htaccess, ezért a CSP és a referrer szabály meta címkében, a scriptek előtt.
+       A frame-ancestors meta címkében nem működik, a keretbe töltés ellen a js/head.js véd. -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Weboldalkészítés kisvállalkozásoknak Dunaharasztin – Endes Tamás</title>
+  <meta name="description" content="Egyedi, animált, mobilbarát weboldal kozmetikusoknak, fodrászoknak, műkörmösöknek Dunaharasztin és környékén. Időpontfoglalás, AI chatbot, személyes kapcsolattartás. 90 000 Ft-tól.">
+  <meta name="theme-color" content="#0b0d10">
+  <!-- TODO: a végleges domain (canonical, og:url, og:image abszolút URL-t kér) -->
+  <link rel="canonical" href="https://TODO-domain.hu/">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="hu_HU">
+  <meta property="og:site_name" content="Endes Tamás – webfejlesztő">
+  <meta property="og:title" content="Egyedi, animált weboldal kisvállalkozásoknak – Endes Tamás">
+  <meta property="og:description" content="Ne csak Facebookon találjanak meg. Egyedi weboldal foglalással, animációkkal, Dunaharasztiról.">
+  <meta property="og:url" content="https://TODO-domain.hu/">
+  <meta property="og:image" content="https://TODO-domain.hu/img/og-kep.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="fonts/space-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/style.css">
+  <!-- Defer nélkül: azonnal kiteszi a .js osztályt, így a rejtett animációs állapot csak működő JS mellett él -->
+  <script src="js/head.js"></script>
+  <script src="js/main.js" defer></script>
+  <!-- Strukturált adat a keresőknek. Adatblokk, nem fut le, a CSP nem érinti. TODO: url, telefon, e-mail -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "Endes Tamás – webfejlesztő",
+    "description": "Egyedi, animált, mobilbarát weboldalak kisvállalkozásoknak: kozmetikusoknak, fodrászoknak, műkörmösöknek.",
+    "url": "https://TODO-domain.hu/",
+    "image": "https://TODO-domain.hu/img/og-kep.jpg",
+    "telephone": "TODO",
+    "email": "TODO",
+    "founder": { "@type": "Person", "name": "Endes Tamás" },
+    "address": { "@type": "PostalAddress", "addressLocality": "Dunaharaszti", "addressCountry": "HU" },
+    "areaServed": [{ "@type": "City", "name": "Dunaharaszti" }, { "@type": "AdministrativeArea", "name": "Pest vármegye" }],
+    "priceRange": "90 000 Ft-tól",
+    "knowsLanguage": "hu"
+  }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#tartalom">Ugrás a tartalomra</a>
+  <div class="scroll-progress" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a class="logo" href="#top" aria-label="Endes Tamás – kezdőlap">&lt;et<span>/</span>&gt;</a>
+
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-nav">menü</button>
+      <nav class="nav" id="main-nav" aria-label="Fő navigáció">
+        <ul class="nav__list">
+          <li><a href="#miert">miért</a></li>
+          <li><a href="#arak">árak</a></li>
+          <li><a href="#folyamat">folyamat</a></li>
+          <li><a href="#munkak">munkák</a></li>
+          <li><a href="#rolam">rólam</a></li>
+          <li><a href="#gyik">gyik</a></li>
+          <li><a href="#kapcsolat">kapcsolat</a></li>
+        </ul>
+      </nav>
+
+      <a class="status-pill" href="#kapcsolat"><span class="status-pill__dot" aria-hidden="true"></span>új projekteket vállalok</a>
+    </div>
+  </header>
+
+  <main id="tartalom">
+    <!-- ================= HERO ================= -->
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <canvas class="hero__canvas" aria-hidden="true"></canvas>
+
+      <!-- Lebegő kódcímkék: az egér mozgására eltérő mélységben elmozdulnak (data-depth) -->
+      <div class="chips" aria-hidden="true">
+        <span class="chip chip--1" data-depth="0.6"><span>&lt;h1&gt;</span></span>
+        <span class="chip chip--2" data-depth="1.2"><span>@keyframes</span></span>
+        <span class="chip chip--3" data-depth="0.9"><span>#c6ff3d</span></span>
+        <span class="chip chip--4" data-depth="1.5"><span>:hover</span></span>
+        <span class="chip chip--5" data-depth="0.7"><span>{ }</span></span>
+        <span class="chip chip--6" data-depth="1.1"><span>transform</span></span>
+      </div>
+
+      <div class="container hero__grid">
+        <div>
+          <p class="hero__prompt">~/dunaharaszti <b>$</b> whoami</p>
+          <h1 class="hero__title" id="hero-title" aria-label="Endes Tamás – webfejlesztő">
+            <span class="hero__title-line" data-scramble aria-hidden="true">Endes</span>
+            <span class="hero__title-line hero__title-line--accent" data-scramble aria-hidden="true">Tamás.</span>
+          </h1>
+          <p class="hero__sub">Egyedi, animált weboldalt készítek kozmetikusoknak, fodrászoknak és műkörmösöknek, hogy <strong>ne csak Facebookon találjanak meg</strong>.</p>
+          <div class="hero__actions">
+            <a class="btn" href="#kapcsolat" data-magnetic>Kérj ajánlatot <span class="btn__arrow" aria-hidden="true">→</span></a>
+            <a class="btn btn--ghost" href="#arak" data-magnetic>Árak</a>
+          </div>
+        </div>
+
+        <!-- Terminál: JS nélkül a teljes szöveg látszik, JS-sel begépelődik -->
+        <div class="terminal reveal" aria-label="Terminál: mit kapsz tőlem">
+          <div class="terminal__bar" aria-hidden="true"><i></i><i></i><i></i><span>zsh — endes@dev</span></div>
+<pre class="terminal__body" data-typer><span class="t-cmd">cat ajanlat.txt</span>
+<span class="t-out">→ egyedi design, nem sablon</span>
+<span class="t-out">→ animációk, amik megállítják a görgetést</span>
+<span class="t-out">→ online foglalás, AI chatbot</span>
+<span class="t-out">→ személyesen, magyarul, a közeledből</span>
+<span class="t-cmd">npm run build -- --ugyfel=te</span>
+<span class="t-out">→ tervezés ... fejlesztés ... teszt</span>
+<span class="t-ok">✓ az oldalad élesítve</span></pre>
+        </div>
+      </div>
+      <a class="hero__scroll" href="#miert">görgess</a>
+    </section>
+
+    <!-- ================= TECH FUTÓSZALAG ================= -->
+    <div class="marquee" aria-label="Amivel dolgozom">
+      <div class="marquee__track">
+        <ul class="marquee__list">
+          <li>Egyedi design</li><li>Animáció</li><li>Mobilbarát</li><li>Időpontfoglalás</li><li>AI chatbot</li><li>Fotózás</li><li>HTML5</li><li>CSS3</li><li>JavaScript</li><li>PHP</li><li>SEO alapok</li><li>Akadálymentesség</li><li>HTTPS</li>
+        </ul>
+        <ul class="marquee__list" aria-hidden="true">
+          <li>Egyedi design</li><li>Animáció</li><li>Mobilbarát</li><li>Időpontfoglalás</li><li>AI chatbot</li><li>Fotózás</li><li>HTML5</li><li>CSS3</li><li>JavaScript</li><li>PHP</li><li>SEO alapok</li><li>Akadálymentesség</li><li>HTTPS</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ================= MIÉRT SAJÁT HONLAP ================= -->
+    <section class="section" id="miert" aria-labelledby="miert-title">
+      <div class="container">
+        <p class="section__eyebrow reveal">miert --saját-honlap</p>
+        <h2 class="section__title" id="miert-title" data-split>Facebook-oldalad már van. <span class="grad">Miért kell mellé honlap?</span></h2>
+
+        <ol class="reasons">
+          <li class="reason reveal" data-tilt>
+            <span class="reason__num" aria-hidden="true">01</span>
+            <h3>Megtalálnak a Google-ben</h3>
+            <p>Aki rákeres, hogy „kozmetikus Dunaharaszti”, annak a saját oldalad is megjelenhet, nem csak a Facebookon belül létezel.</p>
+          </li>
+          <li class="reason reveal" data-tilt>
+            <span class="reason__num" aria-hidden="true">02</span>
+            <h3>Minden egy helyen</h3>
+            <p>Árak, nyitvatartás, cím, elérhetőség: nem vesznek el a posztok között, és nem kell mindenkinek külön megírnod.</p>
+          </li>
+          <li class="reason reveal" data-tilt>
+            <span class="reason__num" aria-hidden="true">03</span>
+            <h3>A tiéd, nem az algoritmusé</h3>
+            <p>Hogy a bejegyzéseidet hányan látják, azt a Facebook dönti el. A saját oldalad és domained a te nevedre szól.</p>
+          </li>
+          <li class="reason reveal" data-tilt>
+            <span class="reason__num" aria-hidden="true">04</span>
+            <h3>Foglalás éjjel is</h3>
+            <p>Beépített időpontfoglalóval a vendég akkor foglal, amikor eszébe jut, te pedig nem üzenetekben egyeztetsz.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ================= GÖRGETÉSRE CSÚSZÓ ÓRIÁSFELIRAT ================= -->
+    <div class="band" aria-hidden="true" data-band>
+      <p class="band__row" data-band-dir="-1">egyedi · animált · gyors · mobilbarát · egyedi · animált · gyors · mobilbarát ·</p>
+      <p class="band__row band__row--outline" data-band-dir="1">időpontfoglalás · AI chatbot · személyesen · időpontfoglalás · AI chatbot · személyesen ·</p>
+    </div>
+
+    <!-- ================= ÁRAK ================= -->
+    <section class="section" id="arak" aria-labelledby="arak-title">
+      <div class="container">
+        <p class="section__eyebrow reveal">amit kapsz</p>
+        <h2 class="section__title" id="arak-title" data-split>Csomagok és árak, <span class="grad">rejtett tételek nélkül.</span></h2>
+        <p class="section__lead reveal">Alanyi adómentes vagyok, ezért az árak végösszegek, áfa nincs rajtuk. A pontos árat a megbeszélés után írásos ajánlatban kapod meg.</p>
+
+        <div class="plans">
+          <article class="plan reveal" data-tilt data-select>
+            <p class="plan__tag">csomag_01</p>
+            <h3>Egyoldalas weboldal</h3>
+            <p class="plan__desc">Egyszerű, gyors bemutatkozó oldal kisebb animációkkal. Annak, aki most lép túl a Facebookon.</p>
+            <p class="plan__price"><span data-count="90000" data-count-from="0">90 000</span> Ft<span class="plan__from">-tól</span></p>
+            <ul class="plan__list">
+              <li>egyedi design, mobilra tervezve</li>
+              <li>szolgáltatások, árak, nyitvatartás</li>
+              <li>kapcsolat, térkép helyett útvonaltervezés</li>
+              <li>impresszum, adatvédelmi és süti tájékoztató</li>
+              <li>keresőbarát alapok, HTTPS</li>
+              <li>2 módosítási kör, 30 nap hibajavítás</li>
+            </ul>
+          </article>
+
+          <article class="plan plan--featured reveal" data-tilt data-select>
+            <p class="plan__tag">csomag_02 <span class="plan__badge">mint az Aura minta</span></p>
+            <h3>Látványos, több szekciós oldal</h3>
+            <p class="plan__desc">Több szekció, látványosabb animációk, ami után megjegyeznek. Az egyoldalas csomag mindenét tartalmazza.</p>
+            <p class="plan__price"><span data-count="130000" data-count-from="0">130 000</span> Ft<span class="plan__from">-tól</span></p>
+            <ul class="plan__list">
+              <li>rólam, képesítések, kezelések árakkal</li>
+              <li>galéria, valódi vendégvélemények</li>
+              <li>görgetésre mozduló jelenetek</li>
+              <li>sötét mód</li>
+              <li>2 módosítási kör, 30 nap hibajavítás</li>
+            </ul>
+          </article>
+
+          <article class="plan plan--extras reveal" data-select>
+            <p class="plan__tag">extrák.css</p>
+            <h3>Ráadásnak</h3>
+            <ul class="extras">
+              <li><span>Görgetős bejárás-animáció <small>a szalonod videóból, görgetésre</small></span><b>+20 000 Ft-tól</b></li>
+              <li><span>Időpontfoglalás beágyazása <small>pl. Calendly, SimplyBook, Fresha</small></span><b>+25 000 Ft-tól</b></li>
+              <li><span>AI chatbot <small>a szalonod témájában válaszol</small></span><b>+60 000 Ft-tól</b></li>
+              <li class="extras__photo" data-flash><span><span class="extras__cam" aria-hidden="true">◉</span> Fotózás, ha van rá igény <small>a szalon, a munkáid, rólad egy jó kép</small></span><b>ajánlat szerint</b></li>
+            </ul>
+          </article>
+        </div>
+
+        <div class="pricing-more">
+          <div class="info-box reveal">
+            <h3><span class="mono" aria-hidden="true">01 /</span> Domain és tárhely</h3>
+            <p>A Rackhostnál, a te nevedre és költségedre: a domain kb. 3–5 ezer Ft/év, a tárhely külön. Az ajánlatban külön tételként szerepel, a regisztrációt én intézem.</p>
+          </div>
+          <div class="info-box reveal">
+            <h3><span class="mono" aria-hidden="true">02 /</span> Utólagos szerkesztés</h3>
+            <ul>
+              <li>óradíj: <b>6 000 Ft/óra</b>, negyedórás elszámolás, minimum 3 000 Ft</li>
+              <li>árlista vagy nyitvatartás cseréje: <b>3 000 Ft-tól</b></li>
+              <li>kép vagy szöveg cseréje: <b>2 000 Ft-tól</b></li>
+              <li>új szekció: <b>10 000 Ft-tól</b></li>
+            </ul>
+          </div>
+          <div class="info-box reveal">
+            <h3><span class="mono" aria-hidden="true">03 /</span> Havidíj (nem kötelező)</h3>
+            <ul>
+              <li>alap karbantartás és felügyelet: <b>6 000 Ft/hó-tól</b></li>
+              <li>bővített, chatbot és foglalás felügyeletével: <b>12 000 Ft/hó-tól</b></li>
+              <li>éves előrefizetésnél <b>10% kedvezmény</b></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= FOLYAMAT ================= -->
+    <section class="section" id="folyamat" aria-labelledby="folyamat-title">
+      <div class="container">
+        <p class="section__eyebrow reveal">hogyan zajlik</p>
+        <h2 class="section__title" id="folyamat-title" data-split>Hat lépés az első beszélgetéstől <span class="grad">az élő oldalig.</span></h2>
+        <ol class="steps">
+          <li class="step reveal"><p class="step__cmd">$ git init</p><h3>Megbeszélés</h3><p>Telefonon vagy személyesen átbeszéljük, mit csinálsz, kik a vendégeid, és mit kell tudnia az oldalnak.</p></li>
+          <li class="step reveal"><p class="step__cmd">$ ajanlat --irasban</p><h3>Írásos ajánlat</h3><p>Leírom a tartalmat, a végösszeget, a módosítási köröket, a határidőt és a fizetés módját.</p></li>
+          <li class="step reveal"><p class="step__cmd">$ fizetes --eloleg=25%</p><h3>Előleg</h3><p>25% előleg számla ellenében. Ezzel indul a munka.</p></li>
+          <li class="step reveal"><p class="step__cmd">$ npm run dev</p><h3>Elkészítés</h3><p>7–10 munkanap az összes anyag beérkezésétől. Animációval vagy foglalóval +3–5 munkanap.</p></li>
+          <li class="step reveal"><p class="step__cmd">$ git commit -m "javítás"</p><h3>2 módosítási kör</h3><p>A visszajelzést egyben gyűjtöd össze, kb. 5 munkanapon belül. A további körök óradíjasak.</p></li>
+          <li class="step reveal"><p class="step__cmd">$ deploy --prod</p><h3>Átadás</h3><p>A maradék 75% számlával, utána 30 napig ingyen javítom, ha bármi hibásan működik.</p></li>
+        </ol>
+
+        <div class="todo-list reveal">
+          <p class="todo-list__title"><span class="mono">TODO.md</span> – amit tőled kérek</p>
+          <ul>
+            <li>a szövegeket (segítek, mit érdemes megírni)</li>
+            <li>logót és fotókat, ha vannak (ha nincsenek, le is fotózhatom a szalont)</li>
+            <li>valódi vendégvéleményeket, kitaláltat nem teszek ki</li>
+            <li>a valós adataidat az impresszumhoz és az adatvédelmi tájékoztatóhoz</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= ÉLŐ BUILD ================= -->
+    <section class="build" id="build" aria-labelledby="build-title">
+      <div class="build__track" data-build>
+        <div class="build__sticky container">
+          <div class="build__head">
+            <div>
+              <p class="section__eyebrow">élő build</p>
+              <h2 class="section__title" id="build-title">Görgess, és megírom előtted.</h2>
+            </div>
+            <p class="build__step-label" aria-live="polite"><span>lépés</span> <b data-build-label>kész oldal</b></p>
+          </div>
+
+          <div class="build__stage">
+            <!-- Bal: kódszerkesztő. A data-step szám mondja meg, melyik lépésben jelenik meg a sor. -->
+            <div class="editor" aria-label="Kódszerkesztő a demó oldal kódjával">
+              <div class="editor__tabs" aria-hidden="true"><span>index.html</span><span>style.css</span></div>
+<pre class="code"><code><span class="ln c-com" data-step="1">&lt;!-- Lumi Stúdió – demó --&gt;</span><span class="ln" data-step="1"><span class="c-tag">&lt;body&gt;</span></span><span class="ln" data-step="2">  <span class="c-tag">&lt;nav</span> <span class="c-attr">class</span>=<span class="c-str">"nav"</span><span class="c-tag">&gt;</span></span><span class="ln" data-step="2">    <span class="c-tag">&lt;a</span> <span class="c-attr">class</span>=<span class="c-str">"logo"</span><span class="c-tag">&gt;</span>Lumi<span class="c-tag">&lt;/a&gt;</span></span><span class="ln" data-step="2">  <span class="c-tag">&lt;/nav&gt;</span></span><span class="ln" data-step="3">  <span class="c-tag">&lt;h1&gt;</span>Ragyogás, nyugalom, te.<span class="c-tag">&lt;/h1&gt;</span></span><span class="ln" data-step="4">  <span class="c-tag">&lt;a</span> <span class="c-attr">class</span>=<span class="c-str">"btn"</span><span class="c-tag">&gt;</span>Időpontfoglalás<span class="c-tag">&lt;/a&gt;</span></span><span class="ln" data-step="6">  <span class="c-tag">&lt;section</span> <span class="c-attr">class</span>=<span class="c-str">"kezelesek"</span><span class="c-tag">&gt;</span></span><span class="ln" data-step="6">    <span class="c-tag">&lt;article&gt;</span>Arckezelés<span class="c-tag">&lt;/article&gt;</span></span><span class="ln" data-step="6">    <span class="c-tag">&lt;article&gt;</span>Gél lakk<span class="c-tag">&lt;/article&gt;</span></span><span class="ln" data-step="6">    <span class="c-tag">&lt;article&gt;</span>Szempilla<span class="c-tag">&lt;/article&gt;</span></span><span class="ln" data-step="6">  <span class="c-tag">&lt;/section&gt;</span></span><span class="ln" data-step="1"><span class="c-tag">&lt;/body&gt;</span></span><span class="ln c-com" data-step="5">/* style.css */</span><span class="ln" data-step="5"><span class="c-prop">:root</span> { <span class="c-attr">--brand</span>: <span class="c-str">#3a1f2b</span>; <span class="c-attr">--accent</span>: <span class="c-str">#f2a7b8</span>; }</span><span class="ln" data-step="5"><span class="c-prop">.btn</span> { <span class="c-attr">background</span>: <span class="c-str">var(--accent)</span>; <span class="c-attr">border-radius</span>: <span class="c-str">99px</span>; }</span><span class="ln" data-step="7"><span class="c-prop">.kezelesek article</span> { <span class="c-attr">animation</span>: <span class="c-str">rise .7s both</span>; }</span><span class="ln c-com" data-step="8">$ deploy --prod  ✓ élesítve, HTTPS rendben</span></code></pre>
+            </div>
+
+            <!-- Jobb: böngésző a demó oldallal -->
+            <div class="browser" aria-label="Böngészőablak: a demó oldal előnézete">
+              <div class="browser__bar">
+                <span class="browser__dots" aria-hidden="true"><i></i><i></i><i></i></span>
+                <span class="browser__url"><span class="browser__lock" data-build-lock aria-hidden="true">●</span>lumi.demo</span>
+                <span class="browser__live" data-step="8">élő</span>
+              </div>
+              <div class="demo" data-demo>
+                <div class="demo__theme" data-theme-layer aria-hidden="true"></div>
+                <div class="demo__nav" data-step="2"><span class="demo__logo">Lumi</span><span class="demo__links"><span>kezelések</span><span>rólam</span><span>foglalás</span></span></div>
+                <p class="demo__h1" data-step="3">Ragyogás, nyugalom, te.</p>
+                <span class="demo__btn" data-step="4">Időpontfoglalás</span>
+                <div class="demo__cards" data-step="6" data-cards>
+                  <div class="demo__card">Arckezelés<b>14 900 Ft</b></div>
+                  <div class="demo__card">Gél lakk<b>8 900 Ft</b></div>
+                  <div class="demo__card">Szempilla<b>12 500 Ft</b></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="build__progress" aria-hidden="true"><span data-build-bar></span></div>
+          <p class="build__note">* Kitalált demó szalon kitalált árakkal, csak a bemutatáshoz.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= PORTFÓLIÓ ================= -->
+    <section class="section" id="munkak" aria-labelledby="munkak-title">
+      <div class="container">
+        <p class="section__eyebrow reveal">ls ./portfolio</p>
+        <h2 class="section__title" id="munkak-title" data-split>Nézd meg, <span class="grad">mit kaphatsz.</span></h2>
+
+        <!-- Valódi, élő projekt. Rámutatáskor (és fókuszra) a képernyőkép végiggörget, mintha valaki böngészné -->
+        <div class="showcase">
+          <figure class="showcase__frame reveal" data-select tabindex="0" aria-describedby="b14-desc">
+            <span class="ribbon ribbon--live">Élő oldal</span>
+            <div class="browser__bar" aria-hidden="true">
+              <span class="browser__dots"><i></i><i></i><i></i></span>
+              <span class="browser__url"><span class="browser__lock is-on">●</span>mobilvadaszles.hu</span>
+            </div>
+            <div class="showcase__viewport">
+              <img class="showcase__img" src="img/b14-hunting.webp" width="720" height="2700" loading="lazy" decoding="async" alt="A B14 Hunting weboldala teljes hosszában: naplementés hero kép terepjáróra szerelt vadászlessel, „A vadászati élmény új szintje” főcím, modellek, árak és felszereltség, 3D konfigurátor gomb, zöld-bézs színvilág.">
+            </div>
+            <figcaption class="sr-only">A mobilvadaszles.hu oldal képernyőképe</figcaption>
+          </figure>
+
+          <div class="showcase__text reveal" id="b14-desc">
+            <p class="showcase__label showcase__label--live">Saját fejlesztés · élő oldal</p>
+            <h3>B14 Hunting – mobilvadászles</h3>
+            <p>Terepjáróra szerelhető, hordozható vadászles gyártójának oldala. Bemutatja a modelleket, az árakat és a felszereltséget, a látogató ajánlatot kérhet, és 3D-ben összeállíthatja és kiszínezheti a saját lesét.</p>
+            <ul class="tags" aria-label="Amit az oldal tartalmaz">
+              <li>3D konfigurátor</li><li>magyar, angol, német</li><li>sötét mód</li><li>ajánlatkérés</li><li>saját süti-hozzájárulás</li>
+            </ul>
+            <a class="text-link" href="https://mobilvadaszles.hu/" rel="noopener noreferrer">Megnézem élőben <span aria-hidden="true">↗</span></a>
+          </div>
+        </div>
+
+        <div class="showcase showcase--flip">
+          <!-- Minta oldal, nem valódi ügyfél -->
+          <figure class="showcase__frame reveal" data-select tabindex="0" aria-describedby="aura-desc">
+            <span class="ribbon">Minta oldal</span>
+            <div class="browser__bar" aria-hidden="true">
+              <span class="browser__dots"><i></i><i></i><i></i></span>
+              <span class="browser__url">aura-kozmetika.minta</span>
+            </div>
+            <div class="showcase__viewport">
+              <img class="showcase__img" src="img/aura-minta.webp" width="720" height="2700" loading="lazy" decoding="async" alt="Az Aura Kozmetika minta oldal teljes hosszában: nagy, serif betűs főcím („Ragyogj a saját bőrödben”), kezelések árakkal, képesítések, galéria és kapcsolat szekció, krém és mélylila színekkel.">
+            </div>
+            <figcaption class="sr-only">Az Aura Kozmetika minta oldal képernyőképe</figcaption>
+          </figure>
+
+          <div class="showcase__text reveal" id="aura-desc">
+            <p class="showcase__label">Minta oldal · nem valódi ügyfél</p>
+            <h3>Aura Kozmetika</h3>
+            <p>Egy kitalált kozmetikai stúdió oldala. Azt mutatja meg, mit kaphatsz a látványosabb csomagban: hero animációval, rólam, képesítések, kezelések árakkal, lépések, galéria, vélemények, kapcsolat, nyitvatartás, sötét mód és a jogi aloldalak.</p>
+            <p class="showcase__note">A szalon, a nevek, az árak és a vélemények kitaláltak, a fotók illusztrációk.</p>
+            <ul class="tags" aria-label="Amit a minta oldal tartalmaz">
+              <li>egyedi design</li><li>animációk</li><li>sötét mód</li><li>mobilbarát</li><li>jogi oldalak</li>
+            </ul>
+          </div>
+        </div>
+
+        <a class="next-card reveal" href="#kapcsolat" data-magnetic>
+          <span class="mono">// következő projekt</span>
+          <strong>A te oldalad lehet a következő.</strong>
+          <span class="next-card__cta">Írj nekem <span aria-hidden="true">→</span></span>
+        </a>
+      </div>
+    </section>
+
+    <!-- ================= RÓLAM ================= -->
+    <section class="section" id="rolam" aria-labelledby="rolam-title">
+      <div class="container about__grid">
+        <div class="portrait reveal">
+          <div class="portrait__frame">
+            <!-- TODO: fotó helye: img/endes-tamas.webp (pl. 840×1050), ide jön majd:
+                 <img src="img/endes-tamas.webp" width="840" height="1050" alt="Endes Tamás portréja" loading="lazy"> -->
+            <div class="portrait__placeholder" aria-hidden="true"><b>ET</b><span>fotó hamarosan</span></div>
+          </div>
+        </div>
+
+        <div class="about__text">
+          <p class="section__eyebrow reveal">rólam</p>
+          <h2 class="section__title" id="rolam-title" data-split>Egy ember, akit <span class="grad">fel is hívhatsz.</span></h2>
+          <p class="reveal">Endes Tamás vagyok, <strong>szoftverfejlesztő és -tesztelő technikus</strong>, dunaharaszti egyéni vállalkozó. 2025-ben végeztem a BMSZC Trefort Ágoston Két Tanítási Nyelvű Technikumban, <strong>90% feletti eredménnyel</strong>, azóta az Óbudai Egyetem Neumann János Informatikai Karán tanulok mérnökinformatikusnak.</p>
+          <p class="reveal">Nem ügynökség vagyok, és nem sablonból dolgozom. Én tervezem, én kódolom, én tesztelem, és ha később kérdésed van, ugyanazt az embert éred el, magyarul, akár személyesen is.</p>
+
+          <ul class="stats">
+            <li class="stat reveal"><span class="stat__num"><span data-count="90" data-count-from="0">90</span>%+</span><span class="stat__label">szakmai vizsgaeredmény</span></li>
+            <li class="stat reveal"><span class="stat__num" data-count="2025" data-count-from="2000">2025</span><span class="stat__label">technikusi oklevél</span></li>
+            <li class="stat reveal"><span class="stat__num">BSc</span><span class="stat__label">mérnökinformatikus, folyamatban</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="container">
+        <ol class="gitlog" data-gitlog aria-label="Tanulmányaim">
+          <li class="commit commit--head reveal">
+            <div class="commit__meta"><span class="commit__hash">commit 7e2f1a9</span><span class="commit__ref">HEAD → main</span><span>2025 – jelenleg</span></div>
+            <h3 class="commit__title">Mérnökinformatikus BSc hallgató</h3>
+            <p class="commit__school">Óbudai Egyetem, Neumann János Informatikai Kar</p>
+          </li>
+          <li class="commit reveal">
+            <div class="commit__meta"><span class="commit__hash">commit 3b9c04d</span><span class="commit__ref commit__ref--tag">tag: technikus-2025</span><span>2025</span></div>
+            <h3 class="commit__title">Szoftverfejlesztő és -tesztelő technikus, 90% feletti eredménnyel</h3>
+            <p class="commit__school">BMSZC Trefort Ágoston Két Tanítási Nyelvű Technikum, Budapest</p>
+            <ul class="tags" aria-label="A képzés főbb területei">
+              <li>HTML5 &amp; CSS3</li><li>JavaScript</li><li>Python</li><li>C# / OOP</li><li>SQL</li><li>REST backend</li><li>Mobilalkalmazás</li><li>Tesztelés</li><li>Git</li>
+            </ul>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ================= GYIK ================= -->
+    <section class="section" id="gyik" aria-labelledby="gyik-title">
+      <div class="container faq">
+        <div>
+          <p class="section__eyebrow reveal">gyik</p>
+          <h2 class="section__title" id="gyik-title" data-split>Amit a legtöbben <span class="grad">megkérdeznek.</span></h2>
+          <p class="section__lead reveal">Ha a válaszod nincs itt, írj nyugodtan, nem kötelez semmire.</p>
+          <a class="btn btn--ghost faq__ask reveal" href="#kapcsolat" data-magnetic>Kérdezek <span class="btn__arrow" aria-hidden="true">→</span></a>
+        </div>
+
+        <div class="faq__list" data-faq>
+          <details class="faq__item reveal" name="gyik">
+            <summary><span class="faq__num" aria-hidden="true">q01</span><span class="faq__q">Kinek a nevére lesz a domain és a tárhely?</span><span class="faq__icon" aria-hidden="true"></span></summary>
+            <div class="faq__body">
+              <div class="faq__answer"><span class="faq__avatar" aria-hidden="true">ET</span><p>A te nevedre és a te költségedre, a Rackhostnál. A regisztrációt és a beállítást én intézem, de minden a tiéd marad, akkor is, ha később mással dolgoznál.</p></div>
+            </div>
+          </details>
+          <details class="faq__item reveal" name="gyik">
+            <summary><span class="faq__num" aria-hidden="true">q02</span><span class="faq__q">Mennyi idő alatt készül el?</span><span class="faq__icon" aria-hidden="true"></span></summary>
+            <div class="faq__body">
+              <div class="faq__answer"><span class="faq__avatar" aria-hidden="true">ET</span><p>7–10 munkanap attól, hogy minden anyag (szöveg, fotók, logó) beérkezett hozzám. Görgetős animációval vagy időpontfoglalóval +3–5 munkanap.</p></div>
+            </div>
+          </details>
+          <details class="faq__item reveal" name="gyik">
+            <summary><span class="faq__num" aria-hidden="true">q03</span><span class="faq__q">Mit kell nekem összekészíteni?</span><span class="faq__icon" aria-hidden="true"></span></summary>
+            <div class="faq__body">
+              <div class="faq__answer"><span class="faq__avatar" aria-hidden="true">ET</span><p>A szövegeket, a logót és a fotókat, ha vannak, a valódi vendégvéleményeket és a valós adataidat az impresszumhoz és az adatvédelmi tájékoztatóhoz. Abban segítek, mit érdemes megírni.</p></div>
+            </div>
+          </details>
+          <details class="faq__item reveal" name="gyik">
+            <summary><span class="faq__num" aria-hidden="true">q04</span><span class="faq__q">Fotókat is tudsz készíteni?</span><span class="faq__icon" aria-hidden="true"></span></summary>
+            <div class="faq__body">
+              <div class="faq__answer"><span class="faq__avatar" aria-hidden="true">ET</span><p>Igen, ha van rá igény. Lefotózom a szalont, a munkáidat, és rólad is készülhet kép az oldalra, így nem kell stockfotókkal dolgozni. Az árát az ajánlatban külön tételként adom meg. Ha egy vendéged is szerepel a képen, az ő hozzájárulása is kell.</p></div>
+            </div>
+          </details>
+          <details class="faq__item reveal" name="gyik">
+            <summary><span class="faq__num" aria-hidden="true">q05</span><span class="faq__q">Mi az a módosítási kör?</span><span class="faq__icon" aria-hidden="true"></span></summary>
+            <div class="faq__body">
+              <div class="faq__answer"><span class="faq__avatar" aria-hidden="true">ET</span><p>Amikor megmutatom az oldalt, a kéréseidet egyben összegyűjtve küldöd el, kb. 5 munkanapon belül. Ez egy kör. Az árban 2 kör van, a további körök óradíjasak.</p></div>
+            </div>
+          </details>
+          <details class="faq__item reveal" name="gyik">
+            <summary><span class="faq__num" aria-hidden="true">q06</span><span class="faq__q">Hogyan fizetek?</span><span class="faq__icon" aria-hidden="true"></span></summary>
+            <div class="faq__body">
+              <div class="faq__answer"><span class="faq__avatar" aria-hidden="true">ET</span><p>25% előleg a munka elején, 75% átadáskor, mindkettő számlával. Alanyi adómentes vagyok, így áfát nem számolok fel.</p></div>
+            </div>
+          </details>
+          <details class="faq__item reveal" name="gyik">
+            <summary><span class="faq__num" aria-hidden="true">q07</span><span class="faq__q">Mi van az átadás után?</span><span class="faq__icon" aria-hidden="true"></span></summary>
+            <div class="faq__body">
+              <div class="faq__answer"><span class="faq__avatar" aria-hidden="true">ET</span><p>30 napig ingyen javítom, ha valami hibásan működik. Utána a módosítás óradíjas vagy fix áras, vagy választhatsz havidíjas karbantartást.</p></div>
+            </div>
+          </details>
+          <details class="faq__item reveal" name="gyik">
+            <summary><span class="faq__num" aria-hidden="true">q08</span><span class="faq__q">Mennyibe kerül egy későbbi módosítás?</span><span class="faq__icon" aria-hidden="true"></span></summary>
+            <div class="faq__body">
+              <div class="faq__answer"><span class="faq__avatar" aria-hidden="true">ET</span><p>6 000 Ft/óra, negyedórás elszámolással, legalább 3 000 Ft. Fix áron: árlista vagy nyitvatartás cseréje 3 000 Ft-tól, kép vagy szöveg cseréje 2 000 Ft-tól, új szekció 10 000 Ft-tól.</p></div>
+            </div>
+          </details>
+          <details class="faq__item reveal" name="gyik">
+            <summary><span class="faq__num" aria-hidden="true">q09</span><span class="faq__q">Kötelező havidíjat fizetni?</span><span class="faq__icon" aria-hidden="true"></span></summary>
+            <div class="faq__body">
+              <div class="faq__answer"><span class="faq__avatar" aria-hidden="true">ET</span><p>Nem. A havidíj opcionális: alap karbantartás 6 000 Ft/hó-tól, chatbot és foglaló felügyeletével 12 000 Ft/hó-tól, éves előrefizetésnél 10% kedvezménnyel. A domain és a tárhely díja ettől független, azt a Rackhostnak fizeted.</p></div>
+            </div>
+          </details>
+          <details class="faq__item reveal" name="gyik">
+            <summary><span class="faq__num" aria-hidden="true">q10</span><span class="faq__q">Az impresszumot és az adatvédelmi tájékoztatót is megcsinálod?</span><span class="faq__icon" aria-hidden="true"></span></summary>
+            <div class="faq__body">
+              <div class="faq__answer"><span class="faq__avatar" aria-hidden="true">ET</span><p>Igen, a valós adataiddal és az oldal tényleges működése alapján. Nem vagyok jogász, ezért ha valami bizonytalan, megmondom, és javaslom, hogy nézesd át.</p></div>
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= KAPCSOLAT ================= -->
+    <section class="section contact" id="kapcsolat" aria-labelledby="kapcsolat-title">
+      <div class="container">
+        <p class="section__eyebrow reveal">kapcsolat</p>
+        <h2 class="contact__title" id="kapcsolat-title" data-split>Építsünk <span class="grad">valamit.</span></h2>
+        <p class="contact__lead reveal">Írd meg pár mondatban, mivel foglalkozol és milyen oldalt szeretnél, vagy hívj fel. Hamar válaszolok.</p>
+
+        <!-- Űrlap nincs: e-mail és telefon. TODO: valós e-mail cím és telefonszám -->
+        <div class="contact__cards">
+          <a class="direct-link reveal" href="mailto:hello@example.com" data-magnetic>
+            <span class="mono">// e-mail</span>
+            <b data-email>hello@example.com</b>
+            <span class="direct-link__cta">Levelet írok <span aria-hidden="true">→</span></span>
+          </a>
+          <a class="direct-link reveal" href="tel:+36000000000" data-magnetic>
+            <span class="mono">// telefon</span>
+            <b>+36 00 000 0000</b>
+            <span class="direct-link__cta">Felhívlak <span aria-hidden="true">→</span></span>
+          </a>
+          <div class="direct-link direct-link--static reveal">
+            <span class="mono">// hol</span>
+            <b>Dunaharaszti és környéke</b>
+            <span class="direct-link__cta">személyesen is</span>
+          </div>
+        </div>
+        <p class="contact__copy"><button class="copy-btn" type="button" data-copy-email hidden>e-mail cím másolása</button></p>
+        <p class="contact__privacy">Ha megkeresel, az adataidat csak a válaszhoz és az ajánlathoz használom. Kérlek, egészségügyi vagy más érzékeny adatot ne küldj. Részletek az <a href="adatvedelem.html">adatvédelmi tájékoztatóban</a>.</p>
+      </div>
+    </section>
+  </main>
+
+  <a class="to-top" href="#top" aria-label="Vissza az oldal tetejére" data-to-top>
+    <svg viewBox="0 0 48 48" aria-hidden="true"><circle class="to-top__track" cx="24" cy="24" r="21"/><circle class="to-top__ring" cx="24" cy="24" r="21" data-to-top-ring/></svg>
+    <span aria-hidden="true">↑</span>
+  </a>
+
+  <footer class="site-footer">
+    <div class="container site-footer__inner">
+      <p>© <span data-year>2026</span> Endes Tamás egyéni vállalkozó · Dunaharaszti</p>
+      <ul>
+        <li><a href="impresszum.html">Impresszum</a></li>
+        <li><a href="adatvedelem.html">Adatvédelmi tájékoztató</a></li>
+        <li><a href="sutik.html">Süti tájékoztató</a></li>
+      </ul>
+    </div>
+  </footer>
+</body>
+</html>
